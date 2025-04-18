@@ -892,7 +892,10 @@ let currentFlashcardIndex = 0;
 
 function startFlashcards(vocabForFlashcards) {
     console.log("Starting Flashcard activity...", vocabForFlashcards);
-     flashcardWords = shuffleArray(vocabForFlashcards); // Shuffle words for flashcards
+    // --- THIS IS THE LINE TO CORRECT (around line 887) ---
+    flashcardWords = shuffleArray(vocabForFlashcards); // Shuffle words for flashcards
+    // --- ENSURE 'let' IS REMOVED FROM THE START OF THIS LINE ---
+
      currentFlashcardIndex = 0;
      // flashcardFlipped = false; // No longer needed
      updateFlashcardProgressDisplay(); // Show initial progress
