@@ -42,17 +42,37 @@ h2 {
 }
 
 
-/* ------------------- Vocabulary Section (Optional, hidden by default) ---*/
+/* ------------------- Vocabulary Section (Optional - hidden by default) ---*/
 #vocabulary-section {
      margin-bottom: 40px;
      background-color: #fff; /* Assume white if shown */
-     display: none; /* Keep hidden by default */
+     /* This section is generally controlled by JS display property */
 }
 
-.vocabulary-list dl { /* ... existing styles ... */ }
-.vocabulary-list dt { /* ... existing styles ... */ }
-.vocabulary-list dd { /* ... existing styles ... */ }
-.vocabulary-list dd .pronunciation { /* ... existing styles ... */ }
+.vocabulary-list dl { /* Existing styles */
+    margin: 0;
+    padding: 0;
+}
+
+.vocabulary-list dt { /* Existing styles */
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #2c3e50;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 3px;
+}
+
+.vocabulary-list dd { /* Existing styles */
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.vocabulary-list dd .pronunciation { /* Existing styles */
+    font-style: italic;
+    color: #8e44ad;
+    margin-right: 8px;
+}
 
 
 /* ------------------- Lesson Content Section -------------------*/
@@ -84,8 +104,8 @@ h2 {
 
 /* Button to start the next activity from lesson */
 #start-activity-button {
-    display: block; /* Make button a block element */
-    margin: 20px auto 0; /* Center the button */
+    display: block;
+    margin: 20px auto 0;
     padding: 12px 25px;
     font-size: 1.1em;
     cursor: pointer;
@@ -109,10 +129,21 @@ h2 {
 /* ------------------- Multiple Choice Quiz Section -------------------*/
 #quiz-section {
      background-color: #f9f9f9; /* Light grey background */
+     position: relative; /* Added for absolute positioning of score if desired */
 }
 
-#mc-question-area { /* Updated ID */
-    background-color: #fff; /* White background for question block */
+/* Style for MC Score/Progress Display */
+#mc-score-display {
+    font-size: 1em;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    margin-bottom: 15px; /* Space below score, above question */
+    min-height: 1em; /* Reserve space */
+}
+
+#mc-question-area { /* Updated ID, Existing styles */
+    background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
@@ -120,33 +151,32 @@ h2 {
     box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-#mc-question-word { /* Updated ID */
+#mc-question-word { /* Updated ID, Existing styles */
     font-size: 1.8em;
     font-weight: bold;
     color: #2c3e50;
     margin-bottom: 20px;
     min-height: 1.6em;
-    display: flex; /* Use flexbox to center text vertically if needed */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #mc-question-word .pronunciation { /* Styling pronunciation within question */
-    font-size: 0.7em; /* Smaller than word */
+    font-size: 0.7em;
     font-weight: normal;
     color: #8e44ad; /* Match vocabulary list pronunciation color */
     margin-left: 8px;
 }
 
-
-#mc-answer-buttons { /* Updated ID */
+#mc-answer-buttons { /* Updated ID, Existing styles */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 15px;
     margin-bottom: 20px;
 }
 
-#mc-answer-buttons button { /* Updated ID */
+#mc-answer-buttons button { /* Updated ID, Existing styles */
     width: 100%;
     padding: 12px 15px;
     font-size: 1em;
@@ -159,16 +189,16 @@ h2 {
     text-align: left;
 }
 
-#mc-answer-buttons button:hover:not(:disabled) { /* Updated ID */
+#mc-answer-buttons button:hover:not(:disabled) { /* Updated ID, Existing styles */
     background-color: #dcdfe0;
 }
 
-#mc-answer-buttons button:disabled { /* Updated ID */
+#mc-answer-buttons button:disabled { /* Updated ID, Existing styles */
     cursor: not-allowed;
     opacity: 0.6;
 }
 
-#mc-feedback { /* Updated ID */
+#mc-feedback { /* Updated ID, Existing styles */
     font-size: 1.2em;
     font-weight: bold;
     min-height: 1.2em;
@@ -176,16 +206,16 @@ h2 {
     text-align: center;
 }
 
-.correct {
+.correct { /* Existing styles */
     color: #27ae60; /* Green for correct */
 }
 
-.incorrect {
+.incorrect { /* Existing styles */
     color: #e74c3c; /* Red for incorrect */
 }
 
 /* Button to go to the next question within MC */
-#next-mc-question-button { /* Updated ID */
+#next-mc-question-button { /* Updated ID, Existing styles */
     display: block;
     margin: 20px auto 0;
     padding: 10px 20px;
@@ -198,11 +228,11 @@ h2 {
     transition: background-color 0.3s ease;
 }
 
-#next-mc-question-button:hover:not(:disabled) { /* Updated ID */
+#next-mc-question-button:hover:not(:disabled) { /* Updated ID, Existing styles */
      background-color: #2980b9;
 }
 
-#next-mc-question-button:disabled { /* Updated ID */
+#next-mc-question-button:disabled { /* Updated ID, Existing styles */
      opacity: 0.6;
      cursor: not-allowed;
 }
@@ -211,38 +241,48 @@ h2 {
 /* ------------------- Flashcard Section -------------------*/
 #flashcard-section {
     background-color: #fff3e0; /* Light orange background */
-    display: none; /* Hidden by JS */
+    /* display is controlled by JS */
     text-align: center; /* Center content */
 }
 
-.card-container {
+/* Style for Flashcard Progress Display */
+#flashcard-progress-display {
+    font-size: 1em;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    margin-bottom: 15px;
+    min-height: 1em;
+}
+
+.card-container { /* Existing styles */
     width: 300px; /* Fixed width for the card */
     height: 200px; /* Fixed height for the card */
     margin: 20px auto; /* Center the card */
-    perspective: 1000px; /* 3D perspective for flip */
+    perspective: 1000px; /* CRUCIAL for 3D effect */
     cursor: pointer;
 }
 
-.card-inner {
+.card-inner { /* Existing styles */
     width: 100%;
     height: 100%;
     transition: transform 0.6s; /* Smooth flip animation */
-    transform-style: preserve-3d; /* Maintain 3D space */
+    transform-style: preserve-3d; /* CRUCIAL for 3D children */
     position: relative;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 /* Class added by JS when flipped */
-.card-container.flipped .card-inner {
-    transform: rotateY(180deg);
+.card-container.flipped .card-inner { /* Existing styles */
+    transform: rotateY(180deg); /* Rotates the inner container */
 }
 
-.card-face {
+.card-face { /* Existing styles */
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* Hide the back face during flip */
+    backface-visibility: hidden; /* CRUCIAL: Hides the back face of the element when it's facing away */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -254,12 +294,13 @@ h2 {
     text-align: center;
 }
 
-.card-back {
+.card-back { /* Existing styles */
     background-color: #ff9800; /* Orange background for back */
     color: white;
+    /* By default, the back face is visible initially */
 }
 
-.card-front {
+.card-front { /* Existing styles */
     background-color: #ffecb3; /* Lighter orange for front */
     color: #333;
     transform: rotateY(180deg); /* Initially rotated away */
@@ -268,14 +309,14 @@ h2 {
 }
 
 #flashcard-word .pronunciation { /* Styling pronunciation within word on card */
-    font-size: 0.6em; /* Smaller */
+    font-size: 0.6em;
     font-weight: normal;
     color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
     margin-left: 5px;
 }
 
 /* Button to go to the next flashcard */
-#next-flashcard-button {
+#next-flashcard-button { /* Existing styles */
      display: block;
     margin: 20px auto 0;
     padding: 10px 20px;
@@ -288,11 +329,11 @@ h2 {
     transition: background-color 0.3s ease;
 }
 
-#next-flashcard-button:hover:not(:disabled) {
+#next-flashcard-button:hover:not(:disabled) { /* Existing styles */
      background-color: #fb8c00; /* Even darker orange */
 }
 
-#next-flashcard-button:disabled {
+#next-flashcard-button:disabled { /* Existing styles */
      opacity: 0.6;
      cursor: not-allowed;
 }
@@ -301,87 +342,94 @@ h2 {
 /* ------------------- Matching Game Section -------------------*/
 #matching-section {
     background-color: #e3f2fd; /* Light blue background */
-    display: none; /* Hidden by JS */
+    /* display is controlled by JS */
     text-align: center;
 }
 
-.matching-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Responsive grid */
-    gap: 10px; /* Space between cards */
-    max-width: 600px; /* Limit grid width */
-    margin: 20px auto; /* Center grid */
+/* Style for Matching Progress Display */
+#matching-progress-display {
+     font-size: 1em;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    margin-bottom: 15px;
+    min-height: 1em;
 }
 
-.matching-card {
+.matching-grid { /* Existing styles */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.matching-card { /* Existing styles */
     position: relative;
     width: 100%;
-    padding-top: 100%; /* Create a square using padding-top trick */
+    padding-top: 100%;
     cursor: pointer;
     border-radius: 5px;
     background-color: #bbdefb; /* Light blue back */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.6s; /* Flip animation */
+    transition: transform 0.6s;
     transform-style: preserve-3d;
 }
 
-.matching-card.flipped {
+.matching-card.flipped { /* Existing styles */
     transform: rotateY(180deg);
 }
 
-.matching-card .card-inner { /* Reuse .card-inner styling */
-     position: absolute; /* Position absolutely within the padding-top parent */
+.matching-card .card-inner { /* Reuse .card-inner styling, Existing styles */
+     position: absolute;
      top: 0; left: 0;
      width: 100%; height: 100%;
-     transition: transform 0.6s; /* Keep transition here too */
+     transition: transform 0.6s;
      transform-style: preserve-3d;
-     border-radius: 5px; /* Smaller radius for matching cards */
-     box-shadow: none; /* No shadow here */
+     border-radius: 5px;
+     box-shadow: none;
 }
 
-
-.matching-card .card-face { /* Reuse .card-face styling */
+.matching-card .card-face { /* Reuse .card-face styling, Existing styles */
     position: absolute;
     width: 100%; height: 100%;
     backface-visibility: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px; /* Less padding for smaller cards */
+    padding: 5px;
     box-sizing: border-box;
     border-radius: 5px;
-    font-size: 0.8em; /* Smaller font for matching cards */
+    font-size: 0.8em;
     font-weight: normal;
     text-align: center;
-    word-break: break-word; /* Allow long words to wrap */
-    overflow: hidden; /* Hide overflow */
+    word-break: break-word;
+    overflow: hidden;
 }
 
-
-.matching-card .card-back {
+.matching-card .card-back { /* Existing styles */
      background-color: #bbdefb; /* Light blue back */
      color: #333;
-      font-size: 1.5em; /* Make the '?' larger */
+      font-size: 1.5em;
       font-weight: bold;
 }
 
-.matching-card .card-front {
+.matching-card .card-front { /* Existing styles */
     background-color: #e1f5fe; /* Lighter blue front */
     color: #333;
     transform: rotateY(180deg);
 }
 
-.matching-card.matched .card-back {
-    /* Maybe change color or add an icon when matched? */
+.matching-card.matched .card-back { /* Existing styles */
     background-color: #c8e6c9; /* Light green when matched */
 }
- .matching-card.matched .card-front {
+ .matching-card.matched .card-front { /* Existing styles */
     background-color: #a5d6a7; /* Slightly darker green when matched */
  }
 
 
 /* Button shown when matching game is complete */
-#next-matching-button {
+#next-matching-button { /* Existing styles */
      display: block;
     margin: 20px auto 0;
     padding: 10px 20px;
@@ -394,11 +442,11 @@ h2 {
     transition: background-color 0.3s ease;
 }
 
-#next-matching-button:hover:not(:disabled) {
+#next-matching-button:hover:not(:disabled) { /* Existing styles */
      background-color: #2196f3;
 }
 
-#next-matching-button:disabled {
+#next-matching-button:disabled { /* Existing styles */
      opacity: 0.6;
      cursor: not-allowed;
 }
@@ -410,14 +458,22 @@ h2 {
      text-align: center;
      font-size: 1.2em;
      font-weight: bold;
-      display: none; /* Hidden by JS */
+     /* display is controlled by JS */
+}
+
+/* Style for Final Score Display */
+#final-score {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #2e7d32; /* Dark green */
+    margin-top: 20px;
 }
 
 
 /* ------------------- Generic Flow Buttons -------------------*/
 .flow-button {
-     display: block; /* Make button a block element */
-     margin: 30px auto 10px; /* Center below content, space below */
+     display: none; /* Ensure these are hidden by default */
+     margin: 30px auto 10px;
      padding: 15px 30px;
      font-size: 1.2em;
      cursor: pointer;
@@ -428,25 +484,16 @@ h2 {
      transition: background-color 0.3s ease;
 }
 
-.flow-button:hover:not(:disabled) {
-     background-color: #673ab7; /* Darker purple */
-}
+.flow-button:hover:not(:disabled) { background-color: #673ab7; }
+.flow-button:disabled { opacity: 0.6; cursor: not-allowed; }
 
-.flow-button:disabled {
-     opacity: 0.6;
-     cursor: not-allowed;
-}
-
-#next-activity-button {} /* Specific styles if needed */
-#next-lesson-button {} /* Specific styles if needed */
+#next-activity-button {}
+#next-lesson-button {}
 
 
 /* ------------------- Responsive adjustments -------------------*/
 @media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-    /* Adjust font sizes for smaller screens */
+    .container { padding: 15px; }
     h1 { font-size: 1.8em; }
     h2 { font-size: 1.4em; }
     #mc-question-word { font-size: 1.4em; }
@@ -457,18 +504,23 @@ h2 {
     #next-mc-question-button, #next-flashcard-button, #next-matching-button { font-size: 0.9em; padding: 8px 15px; }
 
     .card-container {
-        width: 250px; /* Smaller card */
+        width: 250px;
         height: 160px;
     }
      .card-face {
-         font-size: 1.2em; /* Adjust card font size */
+         font-size: 1.2em;
      }
       .card-front { font-size: 1em; }
 
       .matching-grid {
-          grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Smaller matching cards */
+          grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
           gap: 8px;
       }
       .matching-card .card-face { font-size: 0.7em; }
       .matching-card .card-back { font-size: 1.2em; }
+
+      /* Adjust score/progress displays on small screens */
+      #mc-score-display, #flashcard-progress-display, #matching-progress-display, #final-score {
+          font-size: 0.9em;
+      }
 }
