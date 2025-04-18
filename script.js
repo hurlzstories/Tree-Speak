@@ -850,28 +850,48 @@ function nextMultipleChoiceQuestion() {
 }
 
 
-// --- 8. Flashcard Logic (Placeholder) ---
+// --- 8. Flashcard Logic ---
+
+let flashcardWords = []; // Vocab for current flashcard activity
+let currentFlashcardIndex = 0;
+// We no longer strictly need flashcardFlipped state if relying purely on CSS for visual flip
+// let flashcardFlipped = false;
+
 
 function startFlashcards(vocabForFlashcards) {
-    console.log("Starting Flashcard activity...", vocabForFlashcards);
+    console.log("Starting Flashcard activity...");
      flashcardWords = shuffleArray(vocabForFlashcards); // Shuffle words for flashcards
      currentFlashcardIndex = 0;
-     flashcardFlipped = false;
+     // flashcardFlipped = false; // No longer needed
+     updateFlashcardProgressDisplay(); // NEW: Show initial progress
 
     showSection('flashcard-section'); // Show the flashcard section HTML
     displayFlashcard(); // Display the first card
 }
 
+// Function to display the current flashcard
+// --- MODIFIED displayFlashcard ---
 function displayFlashcard() {
     if (currentFlashcardIndex < flashcardWords.length) {
         const card = flashcardWords[currentFlashcardIndex];
+
+        // --- IMPORTANT: Populate BOTH sides ---
+        // Use innerHTML for word side in case pronunciation span is included
         flashcardWord.innerHTML = `${card.word} <span class="pronunciation">(${card.pronunciation})</span>`;
+        // Use innerText for definition side to avoid rendering HTML inside definition
         flashcardDefinition.innerText = card.definition;
-        flashcardDefinition.style.display = 'none'; // Hide definition initially
 
-        flashcardFlipped = false; // Reset flipped state
-        // Optional: Add/remove a 'flipped' class to flashcardContainer for CSS animations
+        // --- REMOVE: DO NOT set display: none here. Let CSS backface-visibility handle it. ---
+        // flashcardDefinition.style.display = 'none';
 
+        // Ensure the card starts in the unflipped state when a new one is displayed
+        flashcardContainer.classList.remove('flipped'); // <-- Ensure no 'flipped' class initially
+
+        // --- Update Progress Display ---
+        updateFlashcardProgressDisplay();
+
+
+        // Configure next card button
         nextFlashcardButton.innerText = 'Next Card';
         nextFlashcardButton.style.display = 'block'; // Show next card button
         nextActivityButton.style.display = 'none'; // Hide next activity button
@@ -879,39 +899,59 @@ function displayFlashcard() {
     } else {
         // Flashcard activity finished
         console.log("Flashcard Activity Complete!");
-        flashcardWord.innerText = "Flashcard Activity Complete!";
-        flashcardDefinition.style.display = 'none';
+        // Display a completion message on the card itself
+        flashcardWord.innerText = "Activity Complete!";
+        flashcardWord.style.fontSize = '1.5em'; // Adjust font size for completion text
+        flashcardWord.style.fontWeight = 'bold';
+
+        flashcardDefinition.innerText = ""; // Clear definition side
+        flashcardContainer.classList.remove('flipped'); // Ensure card is unflipped at the end
+
+        // Hide buttons and show progress/completion state
+        updateFlashcardProgressDisplay(true); // Show completion message
         nextFlashcardButton.style.display = 'none'; // Hide next card button
         endActivity(); // Move to the next activity/lesson
     }
 }
 
-// Function to flip the flashcard
+// Function to flip the flashcard (called by clicking flashcardContainer)
+// --- MODIFIED flipFlashcard (Simplified) ---
 function flipFlashcard() {
-    // Toggle the 'flipped' class on the main container
+     // Check if the activity is already completed before allowing flip
+     if (currentFlashcardIndex >= flashcardWords.length) {
+         return; // Don't flip if the activity is over
+     }
+
+    // Toggle the 'flipped' class on the main container to trigger the CSS animation
     flashcardContainer.classList.toggle('flipped');
 
-    // The CSS handles the rotation based on the 'flipped' class.
-    // We can still toggle the display of the definition if needed,
-    // but the primary visual flip comes from the CSS transform.
-    // Let's keep the display toggle for now, but the CSS opacity/visibility
-    // on the card faces based on the 'flipped' class is the standard way.
-    // For simplicity with this structure, let's rely on the CSS backface-visibility
-    // and the transform to show the correct side. The display toggle might interfere.
-    // ** Let's remove the display toggle here and rely purely on CSS for showing front/back **
-    // flashcardDefinition.style.display = flashcardContainer.classList.contains('flipped') ? 'block' : 'none';
-
-    console.log("Flashcard flipped state toggled."); // Optional: for debugging
+    // No need to manually toggle display: none if using backface-visibility CSS
+    console.log("Flashcard flipped class toggled."); // Optional: for debugging
 }
-
-// Keep the event listener: flashcardContainer.addEventListener('click', flipFlashcard);
-// This should be present near your other event listeners.
 
 // Function to go to the next flashcard (called by nextFlashcardButton click)
+// Keep nextFlashcard function here as before
 function nextFlashcard() {
      currentFlashcardIndex++;
-     displayFlashcard();
+     displayFlashcard(); // Display the next card
 }
+
+// --- NEW: Function to update Flashcard progress display ---
+function updateFlashcardProgressDisplay(isComplete = false) {
+    const totalCards = flashcardWords.length;
+    if (totalCards > 0 && !isComplete) {
+         flashcardProgressDisplay.innerText = `Card ${currentFlashcardIndex + 1} of ${totalCards}`;
+    } else if (isComplete) {
+        flashcardProgressDisplay.innerText = "Flashcard Activity Complete!";
+    }
+    else {
+        flashcardProgressDisplay.innerText = ''; // Hide if no cards loaded
+    }
+}
+
+
+// --- Get Flashcard Progress Element ---
+const flashcardProgressDisplay = document.getElementById('flashcard-progress-display'); // Ensure this element exists in index.html
 
 
 // --- 9. Matching Game Logic (Placeholder) ---
