@@ -1,6 +1,6 @@
 console.log("script.js loaded and starting execution.");
 
-// --- 1. Vocabulary Data ---
+// --- 1. Vocabulary Data (Tree-Speak) ---
 // **IMPORTANT:** Ensure this array contains ALL your vocabulary words
 // from your list, following the { word: "", pronunciation: "", definition: "" }, format.
 const allVocabularyData = [
@@ -21,7 +21,7 @@ const allVocabularyData = [
     { word: "Dagn.n", pronunciation: "DAHG", definition: "Day, Daylight, Time of revealing, warmth, activity." },
     { word: "Dimadj.adj", pronunciation: "DIM", definition: "Dim, Gloomy, Obscured, Faint light, twilight, unclear vision, sorrowful mood." },
     { word: "Dolkn.n", pronunciation: "DOHLK", definition: "Dagger, Ritual Knife, Tool for sacrifice, carving runes, defense." },
-    { word: "Draumn.n", pronunciation: "DROWm (like 'ow' in cow)", definition: "Dream (the experience/vision itself), Messages from spirits, visions, journeys during sleep." },
+    { word: "Draumn.n", pronunciation: "DROWm (like 'ow' in cow)", definition: "Dream (the experience/vision itself), Messages from spirits, visions, journeys during sleep."深受喜爱
     { word: "Drekn.n", pronunciation: "DREK", definition: "Dragon, Great Serpent, Primal power, earth energy, hoarded knowledge/treasure, great danger." },
     { word: "Drithn.n", pronunciation: "DRITH (soft 'th' like 'this')", definition: "Spirit, Ghost, Ethereal Being, General term for non-corporeal entity." },
     { word: "Durnnum.num", pronunciation: "DURN", definition: "Two, Duality, Balance, pairs, opposition." },
@@ -39,7 +39,7 @@ const allVocabularyData = [
     { word: "Fallav.v", pronunciation: "FAHL-lah", definition: "Fall, Descend, Die (in battle/suddenly), Physical falling, leaves falling, dying unexpectedly." },
     { word: "Fangn.n", pronunciation: "FANG", definition: "Capture, Prize / Fang, Tooth, The act of catching prey / A predator's tooth." },
     { word: "Farav.v", pronunciation: "FAH-rah", definition: "Go, Travel, Depart, Purposeful movement, journeying." },
-    { word: "Fathn.n", pronunciation: "FAHTH (soft 'th' like 'this')", definition: "Father, Ancestor (male), Male lineage, protector spirit." },
+    { word: "Fathn.n", pronunciation: "FAHTH (soft 'th' like 'this')", definition: "Father, Ancestor (male), Female lineage, protector spirit." },
     { word: "Felln.n", pronunciation: "FELL", definition: "Mountain, High Rocky Place, Place of perspective, isolation, ancient stone." },
     { word: "Fernn.n", pronunciation: "FERN", definition: "Fern, Ancient plant, hidden places, resilience in shade." },
     { word: "Finnv.v", pronunciation: "FIN", definition: "Find, Discover, Locating something lost or hidden." },
@@ -244,7 +244,7 @@ const allVocabularyData = [
     { word: "Synn./v.", pronunciation: "SEEN", definition: "Sight, Vision / To See, Appear, Perception / Act of seeing or manifesting." },
     { word: "Systirn.n", pronunciation: "SIS-teer", definition: "Sister, Female sibling, close female bond." },
     { word: "Sækjav.v", pronunciation: "SIGH-kyah", definition: "Seek, Attack, Visit, Go after, assault, go to see." },
-    { word: "Særn.n", pronunciation: "SIGH-er", definition: "Sea (poetic/vast sense, variant of Hav), The great deep, mystery." }, // Corrected 'word to:'
+    { word: "Særn.n", pronunciation: "SIGH-er", definition: "Sea (poetic/vast sense, variant of Hav), The great deep, mystery." },
     { word: "Söngrn.n", pronunciation: "SUNG-ur", definition: "Song, Singing, Musical expression, chant." },
     { word: "Takav.v", pronunciation: "TAH-kah", definition: "Take, Grasp, Receive, Act of acquiring or accepting." },
     { word: "Talln.n", pronunciation: "TAHL", definition: "Pine Tree, Evergreen, resilience, resinous." },
@@ -348,7 +348,7 @@ const allVocabularyData = [
 // Define the sequence of lessons and activities here
 const lessons = [
     {
-        title: "Lesson 1: Sky and Earth",
+        title: "Lesson 1: Sky and Earth", // Tree-Speak: Corrected title
         activities: [
             {
                 type: 'lesson',
@@ -399,7 +399,7 @@ const lessons = [
     // --- Add More Lessons Here ---
     /*
     {
-        title: "Lesson 2: Creatures",
+        title: "Lesson 2: Creatures (Tree-Speak)", // Example for next lesson
         activities: [
             {
                 type: 'lesson',
@@ -518,6 +518,7 @@ function showSection(sectionId) {
     completionSection.style.display = 'none'; // Hide completion message
 
     // Hide activity-specific navigation/flow buttons explicitly when switching sections
+    // (These are often managed by individual activity start/end logic, but hiding them here adds safety)
      startActivityButton.style.display = 'none';
      nextMcQuestionButton.style.display = 'none';
      nextFlashcardButton.style.display = 'none';
@@ -541,6 +542,8 @@ function showSection(sectionId) {
 
 // Function to load and display a specific activity within a lesson
 function loadActivity(lessonIndex, activityIndex) {
+    console.log(`Loading Lesson ${lessonIndex}, Activity ${activityIndex}`); // Debugging log
+
     // Check if lesson index is valid
     if (lessonIndex >= lessons.length) {
         // End of all lessons/course
@@ -640,12 +643,13 @@ function displayLessonContent(contentHTML) {
 
 // Function called when an activity is completed
 function endActivity() {
+    console.log(`Ending Activity ${currentActivityIndex} in Lesson ${currentLessonIndex}`); // Debugging log
     // This function determines whether to go to the next activity in the current lesson
     // or move to the next lesson or finish the course.
 
      // Hide activity-specific navigation buttons from the completed activity
      // (These should ideally be hidden by the activity logic itself before calling endActivity,
-     // but hiding them here ensures they are off)
+     // but hiding them here adds safety)
      startActivityButton.style.display = 'none'; // Should be off if coming from activity
      nextMcQuestionButton.style.display = 'none';
      nextFlashcardButton.style.display = 'none';
@@ -692,6 +696,7 @@ function showCompletion() {
 
 // Function to start a new MC quiz activity
 function startMultipleChoiceQuiz(vocabForQuiz, questionsToShow) {
+    console.log("Starting Multiple Choice Quiz..."); // Debugging log
     currentMultipleChoiceQuestions = [];
     currentMultipleChoiceQuestionIndex = 0;
     currentActivityScore = 0; // Reset score for this activity
@@ -706,7 +711,7 @@ function startMultipleChoiceQuiz(vocabForQuiz, questionsToShow) {
 
     // Ensure we don't ask for more questions than unique words available for questions
     const actualQuestionsToGenerate = Math.min(questionsToShow, vocabForQuiz.length);
-    // currentActivityTotalQuestions = actualQuestionsToGenerate; // We track total questions by the generated array length
+    // currentActivityTotalQuestions is now tracked by the generated array length below
 
 
     const usedWords = new Set();
@@ -860,6 +865,7 @@ function checkMultipleChoiceAnswer(selectedDefinition) {
 
 // Function to load the next MC question (called by nextMcQuestionButton click)
 function nextMultipleChoiceQuestion() {
+    console.log("Moving to next MC question..."); // Debugging log
     // Increment the question index
     currentMultipleChoiceQuestionIndex++;
 
@@ -884,12 +890,14 @@ function updateMultipleChoiceScoreDisplay() {
 
 // --- 8. Flashcard Logic ---
 
+let flashcardWords = []; // Vocab for current flashcard activity
+let currentFlashcardIndex = 0;
+// let flashcardFlipped = false; // No longer strictly needed if relying purely on CSS
+
+
 function startFlashcards(vocabForFlashcards) {
     console.log("Starting Flashcard activity...", vocabForFlashcards);
-    // --- THIS IS THE LINE TO CORRECT (around line 887) ---
-    flashcardWords = shuffleArray(vocabForFlashcards); // Shuffle words for flashcards
-    // --- ENSURE 'let' IS REMOVED FROM THE START OF THIS LINE ---
-
+     flashcardWords = shuffleArray(vocabForFlashcards); // Shuffle words for flashcards
      currentFlashcardIndex = 0;
      // flashcardFlipped = false; // No longer needed
      updateFlashcardProgressDisplay(); // Show initial progress
@@ -916,8 +924,7 @@ function displayFlashcard() {
         flashcardDefinition.innerText = card.definition;
 
         // --- Ensure the card starts in the unflipped state ---
-        // This is handled in startFlashcards and nextFlashcard, good.
-        // flashcardContainer.classList.remove('flipped');
+        flashcardContainer.classList.remove('flipped');
 
 
         // --- Update Progress Display ---
@@ -964,9 +971,9 @@ function flipFlashcard() {
 
 // Function to go to the next flashcard (called by nextFlashcardButton click)
 function nextFlashcard() {
+    console.log("Moving to next Flashcard..."); // Debugging log
      currentFlashcardIndex++;
-     // Ensure the card starts unflipped for the next word
-     // flashcardContainer.classList.remove('flipped'); // Moved to displayFlashcard
+     // Ensure the card starts unflipped for the next word - Handled in displayFlashcard
      displayFlashcard(); // Display the next card
 }
 
@@ -1014,6 +1021,8 @@ function startMatchingGame(vocabForMatching) {
         const cardElement = document.createElement('div');
         cardElement.classList.add('matching-card');
         cardElement.dataset.pairId = cardData.pairId; // Use data attributes to store pair info
+        cardElement.dataset.type = cardData.type; // Store type (word/definition)
+
 
         // Add the inner content which gets flipped by CSS
         cardElement.innerHTML = `
@@ -1052,8 +1061,8 @@ function revealMatchingCard(cardElement) {
     if (revealedCards.length === 2) {
         const [card1, card2] = revealedCards;
 
-        // Check if their pairIds match
-        if (card1.dataset.pairId === card2.dataset.pairId) {
+        // Check if their pairIds match AND they are different types (word vs definition)
+        if (card1.dataset.pairId === card2.dataset.pairId && card1.dataset.type !== card2.dataset.type) {
             // Match found!
             console.log("Match Found!");
             card1.classList.add('matched'); // Add 'matched' class (for potential styling)
@@ -1118,7 +1127,7 @@ nextMcQuestionButton.addEventListener('click', nextMultipleChoiceQuestion);
 
 // Button to go to the next card in Flashcards (called by nextFlashcardButton click)
 nextFlashcardButton.addEventListener('click', nextFlashcard);
-// Listener to flip the flashcard when clicked
+// Listener to flip the flashcard when clicked (attached to the container)
 flashcardContainer.addEventListener('click', flipFlashcard);
 
 
@@ -1140,21 +1149,13 @@ nextMatchingButton.addEventListener('click', endActivity);
 
 // --- 11. Initialize Application ---
 // This function runs automatically once the browser has loaded the HTML and CSS
-window.onload = function hideAllSections() {
-    // Hide all potential content sections first
-    vocabularySection.style.display = 'none';
-    lessonSection.style.display = 'none';
-    quizSection.style.display = 'none';
-    flashcardSection.style.display = 'none';
-    matchingSection.style.display = 'none';
-    completionSection.style.display = 'none'; // Hide completion message
+window.onload = function() {
+    console.log("Window loaded, starting application initialization."); // Optional: Add a log to confirm this runs
 
-    // Hide activity-specific navigation/flow buttons explicitly when switching sections
-    // (These are often managed by individual activity start/end logic, but hiding them here adds safety)
-     startActivityButton.style.display = 'none';
-     nextMcQuestionButton.style.display = 'none';
-     nextFlashcardButton.style.display = 'none';
-     nextMatchingButton.style.display = 'none';
-     nextActivityButton.style.display = 'none'; // Ensure this is hidden when loading a *new* activity type
-     nextLessonButton.style.display = 'none'; // Ensure this is hidden when loading a *new* activity type
+    // Initial setup: Hide all sections before displaying the first activity
+    hideAllSections();
+
+    // Start the learning flow by loading the first activity (Lesson 1, Activity 1)
+    // This should typically be the lesson content itself.
+    loadActivity(0, 0); // Load Lesson 1 (index 0), first activity (index 0)
 };
