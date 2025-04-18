@@ -886,11 +886,26 @@ function displayFlashcard() {
     }
 }
 
+// Function to flip the flashcard
 function flipFlashcard() {
-    flashcardFlipped = !flashcardFlipped; // Toggle flipped state
-    flashcardDefinition.style.display = flashcardFlipped ? 'block' : 'none'; // Show/hide definition
-    // Optional: Add/remove 'flipped' class for animation
+    // Toggle the 'flipped' class on the main container
+    flashcardContainer.classList.toggle('flipped');
+
+    // The CSS handles the rotation based on the 'flipped' class.
+    // We can still toggle the display of the definition if needed,
+    // but the primary visual flip comes from the CSS transform.
+    // Let's keep the display toggle for now, but the CSS opacity/visibility
+    // on the card faces based on the 'flipped' class is the standard way.
+    // For simplicity with this structure, let's rely on the CSS backface-visibility
+    // and the transform to show the correct side. The display toggle might interfere.
+    // ** Let's remove the display toggle here and rely purely on CSS for showing front/back **
+    // flashcardDefinition.style.display = flashcardContainer.classList.contains('flipped') ? 'block' : 'none';
+
+    console.log("Flashcard flipped state toggled."); // Optional: for debugging
 }
+
+// Keep the event listener: flashcardContainer.addEventListener('click', flipFlashcard);
+// This should be present near your other event listeners.
 
 // Function to go to the next flashcard (called by nextFlashcardButton click)
 function nextFlashcard() {
