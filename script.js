@@ -1139,24 +1139,14 @@ nextMatchingButton.addEventListener('click', endActivity);
 
 
 // --- 11. Initialize Application ---
+// This function runs automatically once the browser has loaded the HTML and CSS
 window.onload = function() {
-    // Function to hide all main activity sections
-// --- This function should be in your Helper Functions section (around line 500-600) ---
-function hideAllSections() {
-    // Hide all potential content sections first
-    vocabularySection.style.display = 'none';
-    lessonSection.style.display = 'none';
-    quizSection.style.display = 'none';
-    flashcardSection.style.display = 'none';
-    matchingSection.style.display = 'none';
-    completionSection.style.display = 'none'; // Hide completion message
+    console.log("Window loaded, starting application initialization."); // Optional: Add a log to confirm this runs
 
-    // Hide activity-specific navigation/flow buttons explicitly when switching sections
-    // (These are often managed by individual activity start/end logic, but hiding them here adds safety)
-     startActivityButton.style.display = 'none';
-     nextMcQuestionButton.style.display = 'none';
-     nextFlashcardButton.style.display = 'none';
-     nextMatchingButton.style.display = 'none';
-     nextActivityButton.style.display = 'none'; // Ensure this is hidden when loading a *new* activity type
-     nextLessonButton.style.display = 'none'; // Ensure this is hidden when loading a *new* activity type
+    // Initial setup: Hide all sections before displaying the first activity
+    hideAllSections();
+
+    // Start the learning flow by loading the first activity (Lesson 1, Activity 1)
+    // This should typically be the lesson content itself.
+    loadActivity(0, 0); // Load Lesson 1 (index 0), first activity (index 0)
 };
