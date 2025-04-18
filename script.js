@@ -884,12 +884,6 @@ function updateMultipleChoiceScoreDisplay() {
 
 // --- 8. Flashcard Logic ---
 
-let flashcardWords = []; // Vocab for current flashcard activity
-let currentFlashcardIndex = 0;
-// We no longer strictly need flashcardFlipped state if relying purely on CSS for visual flip
-// let flashcardFlipped = false;
-
-
 function startFlashcards(vocabForFlashcards) {
     console.log("Starting Flashcard activity...", vocabForFlashcards);
     // --- THIS IS THE LINE TO CORRECT (around line 887) ---
