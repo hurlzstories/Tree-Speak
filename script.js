@@ -241,7 +241,7 @@ const allVocabularyData = [
     { word: "Synn./v.", pronunciation: "SEEN", definition: "Sight, Vision / To See, Appear, Perception / Act of seeing or manifesting." },
     { word: "Systirn.n", pronunciation: "SIS-teer", definition: "Sister, Female sibling, close female bond." },
     { word: "Sækjav.v", pronunciation: "SIGH-kyah", definition: "Seek, Attack, Visit, Go after, assault, go to see." },
-    { word to: "Særn.n", pronunciation: "SIGH-er", definition: "Sea (poetic/vast sense, variant of Hav), The great deep, mystery." },
+    { word: "Særn.n", pronunciation: "SIGH-er", definition: "Sea (poetic/vast sense, variant of Hav), The great deep, mystery." },
     { word: "Söngrn.n", pronunciation: "SUNG-ur", definition: "Song, Singing, Musical expression, chant." },
     { word: "Takav.v", pronunciation: "TAH-kah", definition: "Take, Grasp, Receive, Act of acquiring or accepting." },
     { word: "Talln.n", pronunciation: "TAHL", definition: "Pine Tree, Evergreen, resilience, resinous." },
