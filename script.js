@@ -1140,8 +1140,23 @@ nextMatchingButton.addEventListener('click', endActivity);
 
 // --- 11. Initialize Application ---
 window.onload = function() {
-    // Initial setup: Hide all sections
-    hideAllSections();
-    // Start the learning flow by loading the first activity (should be the lesson content)
-    loadActivity(0, 0);
+    // Function to hide all main activity sections
+// --- This function should be in your Helper Functions section (around line 500-600) ---
+function hideAllSections() {
+    // Hide all potential content sections first
+    vocabularySection.style.display = 'none';
+    lessonSection.style.display = 'none';
+    quizSection.style.display = 'none';
+    flashcardSection.style.display = 'none';
+    matchingSection.style.display = 'none';
+    completionSection.style.display = 'none'; // Hide completion message
+
+    // Hide activity-specific navigation/flow buttons explicitly when switching sections
+    // (These are often managed by individual activity start/end logic, but hiding them here adds safety)
+     startActivityButton.style.display = 'none';
+     nextMcQuestionButton.style.display = 'none';
+     nextFlashcardButton.style.display = 'none';
+     nextMatchingButton.style.display = 'none';
+     nextActivityButton.style.display = 'none'; // Ensure this is hidden when loading a *new* activity type
+     nextLessonButton.style.display = 'none'; // Ensure this is hidden when loading a *new* activity type
 };
