@@ -490,6 +490,34 @@ function shuffleArray(array) {
     }
     return shuffled; // Return the shuffled copy
 }
+// Function to hide all main activity sections and then show a specific one
+function showSection(sectionId) {
+    // Hide all potential content sections first
+    vocabularySection.style.display = 'none';
+    lessonSection.style.display = 'none';
+    quizSection.style.display = 'none';
+    flashcardSection.style.display = 'none';
+    matchingSection.style.display = 'none';
+    completionSection.style.display = 'none'; // Hide completion message
+
+    // You might also want to explicitly hide flow buttons here if they aren't hidden elsewhere
+    // startActivityButton.style.display = 'none'; // This one is handled in displayLessonContent
+    // nextMcQuestionButton.style.display = 'none'; // Handled in MC logic
+    // nextFlashcardButton.style.display = 'none'; // Handled in Flashcard logic
+    // nextMatchingButton.style.display = 'none'; // Handled in Matching logic
+    nextActivityButton.style.display = 'none'; // Ensure this is hidden when loading a *new* activity type
+    nextLessonButton.style.display = 'none'; // Ensure this is hidden when loading a *new* activity type
+
+
+    // Show the requested section
+    const sectionToShow = document.getElementById(sectionId);
+    if (sectionToShow) {
+        sectionToShow.style.display = 'block';
+    } else {
+        console.error(`Section with ID "${sectionId}" not found.`);
+        // Handle error - maybe show a default view or error message
+    }
+}
 
 
 // --- 6. State & Flow Management ---
