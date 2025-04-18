@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Arnn</title> <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Learn Arnn</h1> <section id="vocabulary-section" style="display: none;">
+            <h2>Full Vocabulary List</h2>
+            <p>A dictionary of all words in Arnn.</p>
+            <div class="vocabulary-list">
+                <dl>
+                    <dt>Arnn.n</dt><dd><span class="pronunciation">ARN</span> - Eagle, Spirit of the sky, messenger, clear vision. (Celtic Ir + Norse Örn)</dd>
+                    <dt>Øxn.n</dt><dd><span class="pronunciation">URKS</span> - Axe (variant of Oxi), Tool/weapon. (Norse Öx)</dd>
+                </dl>
+            </div>
+        </section>
+
+        <section id="lesson-section" class="game-section"> <h2 id="lesson-title">Lesson Title</h2>
+             <div id="lesson-content">
+                 Loading lesson content...
+             </div>
+             <button id="start-activity-button">Start Activity</button>
+        </section>
+
+        <section id="quiz-section" class="game-section"> <h2>Multiple Choice Quiz</h2>
+            <p>Test your knowledge from the lesson!</p>
+
+            <div id="mc-question-area"> <div id="mc-question-word">Loading question...</div> <div id="mc-answer-buttons"> </div>
+                <div id="mc-feedback"></div> <button id="next-mc-question-button">Next Question</button> </div>
+        </section>
+
+        <section id="flashcard-section" class="game-section"> <h2>Flashcards</h2>
+            <p>Click the card to flip it. Click Next Card when ready.</p>
+
+            <div id="flashcard-container" class="card-container">
+                <div class="card-inner">
+                    <div id="flashcard-word" class="card-face card-back">Loading...</div> <div id="flashcard-definition" class="card-face card-front">Loading...</div> </div>
+            </div>
+             <button id="next-flashcard-button">Next Card</button>
+        </section>
+
+         <section id="matching-section" class="game-section"> <h2>Matching Game</h2>
+            <p>Click two cards to find a match!</p>
+
+            <div id="matching-grid" class="matching-grid">
+                Loading game...
+            </div>
+             <button id="next-matching-button">Next Activity</button>
+        </section>
+
+         <section id="completion-section" class="game-section"> <h2>Course Complete!</h2>
+             <p>Congratulations! You have finished all available lessons.</p>
+             </section>
+
+
+        <button id="next-activity-button" class="flow-button">Next Activity</button> <button id="next-lesson-button" class="flow-button">Go to Next Lesson</button> </div> <script src="script.js"></script> </body>
+</html>

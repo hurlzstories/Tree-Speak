@@ -1,0 +1,474 @@
+/* Basic Reset and Body Styling */
+body {
+    font-family: sans-serif; /* Choose a readable font */
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4; /* Light grey background */
+    color: #333; /* Dark grey text */
+}
+
+/* Container for centering and width */
+.container {
+    max-width: 900px; /* Limit content width */
+    margin: 20px auto; /* Center the container */
+    background-color: #fff; /* White background for content */
+    padding: 20px 30px;
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+/* Main Site Title */
+h1 {
+    text-align: center;
+    color: #5a2d82; /* A shade of purple, feel free to change */
+    margin-bottom: 30px;
+}
+
+/* Section Headings (Lessons, Quizzes, etc.) */
+h2 {
+    color: #5a2d82; /* Match main heading color */
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Basic Styling for all main activity sections */
+.game-section {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    /* Background colors specific to sections below */
+    display: none; /* Initially hidden, controlled by JS */
+}
+
+
+/* ------------------- Vocabulary Section (Optional, hidden by default) ---*/
+#vocabulary-section {
+     margin-bottom: 40px;
+     background-color: #fff; /* Assume white if shown */
+     display: none; /* Keep hidden by default */
+}
+
+.vocabulary-list dl { /* ... existing styles ... */ }
+.vocabulary-list dt { /* ... existing styles ... */ }
+.vocabulary-list dd { /* ... existing styles ... */ }
+.vocabulary-list dd .pronunciation { /* ... existing styles ... */ }
+
+
+/* ------------------- Lesson Content Section -------------------*/
+#lesson-section {
+    background-color: #e8f5e9; /* Light green background */
+}
+
+#lesson-content {
+    margin-bottom: 20px;
+}
+
+#lesson-content p {
+    margin-bottom: 1em;
+}
+
+#lesson-content .vocab-word {
+    font-weight: bold;
+    color: #5a2d82; /* Match your Arnn word color */
+}
+
+#lesson-content ul {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+#lesson-content li {
+    margin-bottom: 5px;
+}
+
+/* Button to start the next activity from lesson */
+#start-activity-button {
+    display: block; /* Make button a block element */
+    margin: 20px auto 0; /* Center the button */
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50; /* Green button */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+#start-activity-button:hover:not(:disabled) {
+     background-color: #388e3c; /* Darker green on hover */
+}
+
+#start-activity-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* ------------------- Multiple Choice Quiz Section -------------------*/
+#quiz-section {
+     background-color: #f9f9f9; /* Light grey background */
+}
+
+#mc-question-area { /* Updated ID */
+    background-color: #fff; /* White background for question block */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+#mc-question-word { /* Updated ID */
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    min-height: 1.6em;
+    display: flex; /* Use flexbox to center text vertically if needed */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+#mc-question-word .pronunciation { /* Styling pronunciation within question */
+    font-size: 0.7em; /* Smaller than word */
+    font-weight: normal;
+    color: #8e44ad; /* Match vocabulary list pronunciation color */
+    margin-left: 8px;
+}
+
+
+#mc-answer-buttons { /* Updated ID */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+#mc-answer-buttons button { /* Updated ID */
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    background-color: #ecf0f1;
+    color: #333;
+    transition: background-color 0.3s ease;
+    text-align: left;
+}
+
+#mc-answer-buttons button:hover:not(:disabled) { /* Updated ID */
+    background-color: #dcdfe0;
+}
+
+#mc-answer-buttons button:disabled { /* Updated ID */
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+#mc-feedback { /* Updated ID */
+    font-size: 1.2em;
+    font-weight: bold;
+    min-height: 1.2em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.correct {
+    color: #27ae60; /* Green for correct */
+}
+
+.incorrect {
+    color: #e74c3c; /* Red for incorrect */
+}
+
+/* Button to go to the next question within MC */
+#next-mc-question-button { /* Updated ID */
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db; /* Blue button */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+#next-mc-question-button:hover:not(:disabled) { /* Updated ID */
+     background-color: #2980b9;
+}
+
+#next-mc-question-button:disabled { /* Updated ID */
+     opacity: 0.6;
+     cursor: not-allowed;
+}
+
+
+/* ------------------- Flashcard Section -------------------*/
+#flashcard-section {
+    background-color: #fff3e0; /* Light orange background */
+    display: none; /* Hidden by JS */
+    text-align: center; /* Center content */
+}
+
+.card-container {
+    width: 300px; /* Fixed width for the card */
+    height: 200px; /* Fixed height for the card */
+    margin: 20px auto; /* Center the card */
+    perspective: 1000px; /* 3D perspective for flip */
+    cursor: pointer;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s; /* Smooth flip animation */
+    transform-style: preserve-3d; /* Maintain 3D space */
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Class added by JS when flipped */
+.card-container.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hide the back face during flip */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card-back {
+    background-color: #ff9800; /* Orange background for back */
+    color: white;
+}
+
+.card-front {
+    background-color: #ffecb3; /* Lighter orange for front */
+    color: #333;
+    transform: rotateY(180deg); /* Initially rotated away */
+    font-size: 1.2em; /* Smaller font for definition */
+    font-weight: normal;
+}
+
+#flashcard-word .pronunciation { /* Styling pronunciation within word on card */
+    font-size: 0.6em; /* Smaller */
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+    margin-left: 5px;
+}
+
+/* Button to go to the next flashcard */
+#next-flashcard-button {
+     display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffb300; /* Darker orange */
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+#next-flashcard-button:hover:not(:disabled) {
+     background-color: #fb8c00; /* Even darker orange */
+}
+
+#next-flashcard-button:disabled {
+     opacity: 0.6;
+     cursor: not-allowed;
+}
+
+
+/* ------------------- Matching Game Section -------------------*/
+#matching-section {
+    background-color: #e3f2fd; /* Light blue background */
+    display: none; /* Hidden by JS */
+    text-align: center;
+}
+
+.matching-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Responsive grid */
+    gap: 10px; /* Space between cards */
+    max-width: 600px; /* Limit grid width */
+    margin: 20px auto; /* Center grid */
+}
+
+.matching-card {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Create a square using padding-top trick */
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #bbdefb; /* Light blue back */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.6s; /* Flip animation */
+    transform-style: preserve-3d;
+}
+
+.matching-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.matching-card .card-inner { /* Reuse .card-inner styling */
+     position: absolute; /* Position absolutely within the padding-top parent */
+     top: 0; left: 0;
+     width: 100%; height: 100%;
+     transition: transform 0.6s; /* Keep transition here too */
+     transform-style: preserve-3d;
+     border-radius: 5px; /* Smaller radius for matching cards */
+     box-shadow: none; /* No shadow here */
+}
+
+
+.matching-card .card-face { /* Reuse .card-face styling */
+    position: absolute;
+    width: 100%; height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px; /* Less padding for smaller cards */
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 0.8em; /* Smaller font for matching cards */
+    font-weight: normal;
+    text-align: center;
+    word-break: break-word; /* Allow long words to wrap */
+    overflow: hidden; /* Hide overflow */
+}
+
+
+.matching-card .card-back {
+     background-color: #bbdefb; /* Light blue back */
+     color: #333;
+      font-size: 1.5em; /* Make the '?' larger */
+      font-weight: bold;
+}
+
+.matching-card .card-front {
+    background-color: #e1f5fe; /* Lighter blue front */
+    color: #333;
+    transform: rotateY(180deg);
+}
+
+.matching-card.matched .card-back {
+    /* Maybe change color or add an icon when matched? */
+    background-color: #c8e6c9; /* Light green when matched */
+}
+ .matching-card.matched .card-front {
+    background-color: #a5d6a7; /* Slightly darker green when matched */
+ }
+
+
+/* Button shown when matching game is complete */
+#next-matching-button {
+     display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #42a5f5; /* Blue */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+#next-matching-button:hover:not(:disabled) {
+     background-color: #2196f3;
+}
+
+#next-matching-button:disabled {
+     opacity: 0.6;
+     cursor: not-allowed;
+}
+
+
+/* ------------------- Completion Section -------------------*/
+#completion-section {
+     background-color: #c8e6c9; /* Light green */
+     text-align: center;
+     font-size: 1.2em;
+     font-weight: bold;
+      display: none; /* Hidden by JS */
+}
+
+
+/* ------------------- Generic Flow Buttons -------------------*/
+.flow-button {
+     display: block; /* Make button a block element */
+     margin: 30px auto 10px; /* Center below content, space below */
+     padding: 15px 30px;
+     font-size: 1.2em;
+     cursor: pointer;
+     border: none;
+     border-radius: 5px;
+     background-color: #7e57c2; /* Deep purple */
+     color: white;
+     transition: background-color 0.3s ease;
+}
+
+.flow-button:hover:not(:disabled) {
+     background-color: #673ab7; /* Darker purple */
+}
+
+.flow-button:disabled {
+     opacity: 0.6;
+     cursor: not-allowed;
+}
+
+#next-activity-button {} /* Specific styles if needed */
+#next-lesson-button {} /* Specific styles if needed */
+
+
+/* ------------------- Responsive adjustments -------------------*/
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    /* Adjust font sizes for smaller screens */
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.4em; }
+    #mc-question-word { font-size: 1.4em; }
+    #mc-question-word .pronunciation { font-size: 0.6em; }
+    #mc-answer-buttons button { font-size: 0.9em; padding: 10px; }
+     #mc-feedback { font-size: 1em; }
+    #start-activity-button, .flow-button { font-size: 1em; padding: 10px 20px; }
+    #next-mc-question-button, #next-flashcard-button, #next-matching-button { font-size: 0.9em; padding: 8px 15px; }
+
+    .card-container {
+        width: 250px; /* Smaller card */
+        height: 160px;
+    }
+     .card-face {
+         font-size: 1.2em; /* Adjust card font size */
+     }
+      .card-front { font-size: 1em; }
+
+      .matching-grid {
+          grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Smaller matching cards */
+          gap: 8px;
+      }
+      .matching-card .card-face { font-size: 0.7em; }
+      .matching-card .card-back { font-size: 1.2em; }
+}
