@@ -38,7 +38,7 @@ h2 {
     padding: 20px;
     border-radius: 8px;
     /* Background colors specific to sections below */
-    display: none; /* Initially hidden, controlled by JS */
+    /* display is controlled by JS */
 }
 
 
@@ -261,6 +261,10 @@ h2 {
     margin: 20px auto; /* Center the card */
     perspective: 1000px; /* CRUCIAL for 3D effect */
     cursor: pointer;
+    /* Ensure the container itself doesn't hide anything */
+    /* display: block !important; */ /* Already handled by .game-section */
+    /* visibility: visible !important; */ /* Already handled by JS showSection */
+    /* opacity: 1 !important; */ /* Already handled by JS showSection */
 }
 
 .card-inner { /* Existing styles */
@@ -269,8 +273,8 @@ h2 {
     transition: transform 0.6s; /* Smooth flip animation */
     transform-style: preserve-3d; /* CRUCIAL for 3D children */
     position: relative;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 10px; /* Match your design */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Match your design */
 }
 
 /* Class added by JS when flipped */
@@ -278,32 +282,40 @@ h2 {
     transform: rotateY(180deg); /* Rotates the inner container */
 }
 
-.card-face { /* Existing styles */
+.card-face { /* Existing styles + added !important visibility */
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* CRUCIAL: Hides the back face of the element when it's facing away */
-    display: flex;
+    backface-visibility: hidden; /* Hides the back face of the element when it's facing away */
+    display: flex !important; /* <-- Added !important */
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 20px; /* Adjust as needed */
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 10px; /* Match your design */
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;
+    visibility: visible !important; /* <-- Added !important */
+    opacity: 1 !important; /* <-- Added !important */
+    /* Ensure no conflicting transform here */
 }
 
 .card-back { /* Existing styles */
-    background-color: #ff9800; /* Orange background for back */
-    color: white;
+    /* Styles for the back of the card (word side) */
+    background-color: #ff9800; /* Example */
+    color: white; /* Example */
     /* By default, the back face is visible initially */
 }
 
-.card-front { /* Existing styles */
-    background-color: #ffecb3; /* Lighter orange for front */
-    color: #333;
+.card-front { /* Existing styles + added !important visibility */
+    /* Styles for the front of the card (definition side) */
+    background-color: #ffecb3; /* Example */
+    color: #333; /* Example */
     transform: rotateY(180deg); /* Initially rotated away */
+    display: flex !important; /* <-- Added !important */
+    visibility: visible !important; /* <-- Added !important */
+    opacity: 1 !important; /* <-- Added !important */
     font-size: 1.2em; /* Smaller font for definition */
     font-weight: normal;
 }
@@ -498,6 +510,7 @@ h2 {
     h2 { font-size: 1.4em; }
     #mc-question-word { font-size: 1.4em; }
     #mc-question-word .pronunciation { font-size: 0.6em; }
+    #mc-answer-buttons { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted for smaller screens */ }
     #mc-answer-buttons button { font-size: 0.9em; padding: 10px; }
      #mc-feedback { font-size: 1em; }
     #start-activity-button, .flow-button { font-size: 1em; padding: 10px 20px; }
